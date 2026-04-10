@@ -36,7 +36,7 @@ const Navbar = () => {
         <Link href="/" className="flex items-center gap-3 group">
           <div
             className={cn(
-              "relative flex h-11 w-40 items-center justify-center rounded-xl transition-all duration-500 overflow-hidden",
+              "relative flex h-11 w-30 lg:w-40 items-center justify-center rounded-xl transition-all duration-500 overflow-hidden",
             )}
           >
             <Image

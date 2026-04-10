@@ -12,6 +12,8 @@ import {
 } from "lucide-react";
 import { Instagram, Twitter } from "./icons/BrandIcons";
 import { cn } from "@/utils/cn";
+import Link from "next/link";
+import Image from "next/image";
 
 const FOOTER_LINKS = [
   {
@@ -55,19 +57,23 @@ export default function Footer() {
         <div className="grid grid-cols-12 gap-y-16 lg:gap-x-16">
           {/* Brand Column */}
           <div className="col-span-12 lg:col-span-4">
-            <div className="flex items-center gap-3 mb-8">
-              <div className="h-10 w-10 bg-[var(--color-primary-900)] flex items-center justify-center rounded-lg">
-                <Hammer size={20} className="text-white" />
+            {/* Logo Section */}
+            <Link href="/" className="flex items-center gap-3 group mb-4">
+              <div
+                className={cn(
+                  "relative flex h-11 w-40 items-center justify-center rounded-xl transition-all duration-500 overflow-hidden",
+                )}
+              >
+                <Image
+                  src="/images/logo.webp"
+                  alt="Lois Logo"
+                  width={500}
+                  height={500}
+                  priority
+                  className={cn("transition-all duration-500 brightness-0")}
+                />
               </div>
-              <div className="flex flex-col leading-none">
-                <span className="text-2xl font-bebas tracking-wide text-[var(--color-primary-950)] uppercase">
-                  Lois
-                </span>
-                <span className="text-[8px] font-black uppercase tracking-[0.3em] text-[var(--color-primary-400)]">
-                  Infrastructure
-                </span>
-              </div>
-            </div>
+            </Link>
             <p className="max-w-xs text-[var(--color-slate-500)] text-sm leading-relaxed mb-8">
               Delivering high-quality engineering solutions with integrity,
               innovation, and efficiency. Built for generations.
