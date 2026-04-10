@@ -174,8 +174,8 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-20 pt-8 border-t border-[var(--color-primary-100)] flex flex-col items-center justify-center">
-          <p className="text-[8px] font-black text-[var(--color-primary-400)] tracking-[0.3em] uppercase text-center">
+        <div className="mt-20 pt-8 border-t border-(--color-primary-100) flex flex-col items-center justify-center">
+          <p className="text-[8px] font-black text-(--color-primary-400) tracking-[0.3em] uppercase text-center">
             © {currentYear} Lois Infrastructure Engineering
           </p>
         </div>

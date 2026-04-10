@@ -120,42 +120,42 @@ const servicesData: ServiceCardProps[] = [
     description:
       "From conceptual design to turnkey delivery, we build modern, energy-efficient homes tailored to your lifestyle.",
     Icon: Briefcase,
-    imageUrl: "/images/services/residential.jpg",
+    imageUrl: "/images/services.jpg",
   },
   {
     title: "Commercial Construction",
     description:
       "We deliver cutting-edge commercial spaces, retail centers, and multi-use developments that meet modern business demands.",
     Icon: Building2,
-    imageUrl: "/images/services/commercial.jpg",
+    imageUrl: "/images/services.jpg",
   },
   {
     title: "Interior Design & Space Planning",
     description:
       "Our certified designers transform spaces to maximize functionality, aesthetics, and user experience.",
     Icon: LayoutGrid,
-    imageUrl: "/images/services/interior.jpg",
+    imageUrl: "/images/services.jpg",
   },
   {
     title: "Renovation & Remodeling",
     description:
       "Modernizing existing structures, from historic renovations to complete property transformations.",
     Icon: Hammer,
-    imageUrl: "/images/services/renovation.jpg",
+    imageUrl: "/images/services.jpg",
   },
   {
     title: "Infrastructure & Civil Works",
     description:
       "We manage large-scale civil engineering projects, including roads, bridges, and essential utility networks.",
     Icon: TrainFront,
-    imageUrl: "/images/services/infrastructure.jpg",
+    imageUrl: "/images/services.jpg",
   },
   {
     title: "Project Planning & Consultation",
     description:
       "Strategic advice, feasibility studies, and robust project management to ensure successful project execution.",
     Icon: HardHat,
-    imageUrl: "/images/services/planning.jpg",
+    imageUrl: "/images/services.jpg",
   },
 ];
 const ServiceCard = ({
@@ -170,9 +170,17 @@ const ServiceCard = ({
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
-      className={`group relative overflow-hidden rounded-[2.5rem] bg-white border border-[var(--color-primary-50)] flex flex-col p-8 md:p-12 min-h-[420px] transition-all duration-700 hover:shadow-3xl hover:-translate-y-2 ${className}`}
+      className={cn(
+        "group relative overflow-hidden rounded-[2.5rem] flex flex-col p-8 md:p-12 min-h-[420px] transition-all duration-700 hover:-translate-y-2",
+        // Senior Touch: Default background is a very light primary tint with a border
+        "bg-primary-50/30 border border-(--color-primary-100)",
+        className
+      )}
     >
-      {/* Background Image Reveal with Professional Scrim */}
+      {/* 1. Structural Grid Pattern (Visible only in Normal State) */}
+      <div className="absolute inset-0 z-0 opacity-[0.05] group-hover:opacity-0 transition-opacity duration-700 [background-image:linear-gradient(to_right,var(--color-primary-900)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-primary-900)_1px,transparent_1px)] [background-size:40px_40px]" />
+
+      {/* 2. Background Image Reveal with Professional Scrim */}
       <div
         className="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 scale-110 group-hover:scale-100 transition-all duration-1000 ease-out"
         style={{
@@ -185,21 +193,21 @@ const ServiceCard = ({
       <div className="relative z-10 h-full flex flex-col">
         {/* Icon Container */}
         <div className="mb-auto">
-          <div className="w-14 h-14 flex items-center justify-center rounded-2xl bg-[var(--color-primary-50)] text-[var(--color-primary-700)] group-hover:bg-white/10 group-hover:text-white group-hover:backdrop-blur-md border border-transparent group-hover:border-white/20 transition-all duration-500">
+          <div className="w-14 h-14 flex items-center justify-center rounded-2xl bg-white text-[var(--color-primary-700)] group-hover:bg-white/10 group-hover:text-white group-hover:backdrop-blur-md border border-[var(--color-primary-100)] group-hover:border-white/20 transition-all duration-500 shadow-sm group-hover:shadow-none">
             <Icon size={28} strokeWidth={1.2} />
           </div>
         </div>
 
         <div className="mt-auto">
-          <h3 className="text-2xl md:text-3xl font-bold text-[var(--color-primary-900)] mb-4 group-hover:text-white transition-colors duration-300 tracking-tight leading-tight">
+          <h3 className="text-2xl md:text-3xl font-bold text-[var(--color-primary-950)] mb-4 group-hover:text-white transition-colors duration-300 tracking-tight leading-tight">
             {title}
           </h3>
-          <p className="text-[var(--color-slate-500)] group-hover:text-slate-300 transition-colors duration-300 text-sm md:text-base leading-relaxed mb-8 max-w-[280px]">
+          <p className="text-[var(--color-slate-500)] group-hover:text-slate-200 transition-colors duration-300 text-sm md:text-base leading-relaxed mb-8 max-w-[280px]">
             {description}
           </p>
 
           <div className="flex items-center gap-3 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100">
-            <div className="flex items-center justify-center w-10 h-10 rounded-full bg-white text-[var(--color-primary-900)] shadow-xl">
+            <div className="flex items-center justify-center w-10 h-10 rounded-full bg-white text-[var(--color-primary-900)]">
               <ArrowRight size={18} />
             </div>
             <span className="text-[10px] font-black uppercase tracking-[0.2em] text-white">
@@ -215,17 +223,17 @@ const properties = [
   {
     title: "Luxury Villa Retreat",
     location: "Serene Heights, Silicon Valley",
-    img: "/images/prop-1.jpg",
+    img: "/images/projects.jpg",
   },
   {
     title: "Cityscape Penthouse",
     location: "Skyline Towers, Metro City",
-    img: "/images/prop-2.jpg",
+    img: "/images/projects.jpg",
   },
   {
     title: "Seaside Dream Home",
     location: "Coastal Haven, Ocean Blue",
-    img: "/images/prop-3.jpg",
+    img: "/images/projects.jpg",
   },
 ];
 export default function Home() {
@@ -235,195 +243,194 @@ export default function Home() {
   return (
     <main className="relative min-h-screen bg-white">
       {/* --- HERO SECTION --- */}
-     <section className="relative min-h-screen bg-white overflow-hidden selection:bg-[var(--color-primary-100)] selection:text-[var(--color-primary-900)]">
-      {/* --- Main Content --- */}
-      <div className="container mx-auto grid min-h-screen grid-cols-12 items-center px-6 pt-20">
-        
-        {/* Text Column */}
-        <div className="col-span-12 lg:col-span-5 z-10">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
-            <span className="mb-6 inline-flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.4em] text-[var(--color-primary-500)]">
-              <span className="h-px w-6 bg-[var(--color-primary-500)]" />
-              Architecture & Engineering
-            </span>
-            
-            <h1 className="mb-8 font-bebas text-7xl md:text-9xl leading-[0.85] text-[var(--color-primary-950)] uppercase">
-              Designing <br />
-              <span className="font-serif italic text-[var(--color-primary-300)] normal-case tracking-tight lowercase">
-                Future
-              </span>{" "}
-              Space.
-            </h1>
-            
-            <p className="mb-10 max-w-md text-base md:text-lg leading-relaxed text-slate-500">
-              Lois Infrastructure orchestrates environments where structural integrity meets 
-              uncompromising luxury. Precision-built for the next generation.
-            </p>
-
-            <div className="flex flex-wrap items-center gap-8">
-              <button className="group flex items-center gap-4 rounded-full bg-[var(--color-primary-900)] px-10 py-5 text-xs font-black uppercase tracking-widest text-white transition-all hover:bg-[var(--color-primary-700)] active:scale-95">
-                Explore Projects
-                <ArrowUpRight
-                  size={18}
-                  className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
-                />
-              </button>
-
-              <button className="group flex items-center gap-4 text-xs font-black uppercase tracking-widest text-[var(--color-primary-900)] transition-colors">
-                <div className="flex h-14 w-14 items-center justify-center rounded-full border border-[var(--color-primary-100)] bg-white transition-all group-hover:bg-[var(--color-primary-50)] group-hover:border-[var(--color-primary-300)]">
-                  <Play fill="currentColor" size={14} className="ml-1" />
-                </div>
-                Watch Film
-              </button>
-            </div>
-          </motion.div>
-        </div>
-
-        {/* Visual Column (No Shadows) */}
-        <div className="absolute right-0 top-0 hidden h-full w-[60%] lg:block">
-          <motion.div
-            initial={{ scale: 1.1, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-            className="relative h-full w-full overflow-hidden"
-          >
-            <img
-              src="/images/hero-5.png" 
-              alt="Luxury Architecture"
-              className="h-full w-full object-contain object-center scale-110"
-              draggable={false}
-            />
-
-            {/* Subtle Gradient Scrim - Refined */}
-            <div className="absolute inset-0 -z-10 bg-gradient-to-l from-[var(--color-primary-50)] via-white to-white" />
-
-            {/* Floating Metric Card (Flat Design - No Shadows) */}
+      <section className="relative min-h-screen bg-white overflow-hidden selection:bg-[var(--color-primary-100)] selection:text-[var(--color-primary-900)]">
+        {/* --- Main Content --- */}
+        <div className="container mx-auto grid grid-cols-1 lg:grid-cols-12 items-center px-6 pt-32 pb-20 lg:min-h-screen lg:pt-20">
+          {/* Text Column */}
+          <div className="col-span-1 lg:col-span-5 z-10 text-center lg:text-left">
             <motion.div
-              initial={{ y: 50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.8, duration: 1 }}
-              className="absolute bottom-24 right-20 rounded-2xl border border-[var(--color-primary-100)] bg-white/80 p-8 backdrop-blur-md"
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
             >
-              <div className="flex items-baseline gap-3">
-                <span className="font-bebas text-5xl tracking-tighter text-[var(--color-primary-950)]">
-                  2026
-                </span>
-                <span className="text-[10px] font-black uppercase tracking-widest text-[var(--color-primary-500)]">
-                  Excellence Award
-                </span>
-              </div>
-              <p className="mt-2 text-[10px] font-medium uppercase tracking-tight text-slate-400">
-                Safety Standards & Innovation
+              <span className="mb-6 inline-flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.4em] text-[var(--color-primary-500)]">
+                <span className="h-px w-6 bg-[var(--color-primary-500)]" />
+                Architecture & Engineering
+              </span>
+
+              <h1 className="mb-8 font-bebas text-7xl md:text-9xl leading-[0.85] text-[var(--color-primary-950)] uppercase">
+                Designing <br />
+                <span className="font-serif italic text-[var(--color-primary-300)] normal-case tracking-tight lowercase">
+                  Future
+                </span>{" "}
+                Space.
+              </h1>
+
+              <p className="mb-10 max-w-md mx-auto lg:mx-0 text-base md:text-lg leading-relaxed text-slate-500">
+                Lois Infrastructure orchestrates environments where structural
+                integrity meets uncompromising luxury. Precision-built for the
+                next generation.
               </p>
+
+              <div className="flex flex-wrap items-center gap-8 justify-center lg:justify-start">
+                <button className="group flex items-center gap-4 rounded-full bg-[var(--color-primary-900)] px-10 py-5 text-xs font-black uppercase tracking-widest text-white transition-all hover:bg-[var(--color-primary-700)] active:scale-95">
+                  Explore Projects
+                  <ArrowUpRight
+                    size={18}
+                    className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
+                  />
+                </button>
+
+                <button className="group flex items-center gap-4 text-xs font-black uppercase tracking-widest text-[var(--color-primary-900)] transition-colors">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-full border border-[var(--color-primary-100)] bg-white transition-all group-hover:bg-[var(--color-primary-50)] group-hover:border-[var(--color-primary-300)]">
+                    <Play fill="currentColor" size={14} className="ml-1" />
+                  </div>
+                  Watch Film
+                </button>
+              </div>
             </motion.div>
-          </motion.div>
-        </div>
-      </div>
+          </div>
 
-      {/* --- Scroll Indicator --- */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2">
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ repeat: Infinity, duration: 2 }}
-          className="flex flex-col items-center gap-4"
-        >
-          <span className="text-[9px] font-black uppercase tracking-[0.5em] text-slate-300">
-            Scroll
-          </span>
-          <div className="h-12 w-px bg-slate-200" />
-        </motion.div>
-      </div>
-    </section>
-      {/* --- Projects Section --- */}
-      <section className="relative bg-[var(--color-primary-50)] py-24 lg:py-32 overflow-hidden">
-      <div className="container mx-auto px-6">
-        
-        {/* Section Header */}
-        <div className="mb-20 text-center lg:text-left">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="font-bebas text-6xl md:text-8xl text-[var(--color-primary-950)] leading-[0.9] uppercase"
-          >
-            Featured <br />
-            <span className="font-serif italic text-[var(--color-primary-300)] normal-case tracking-tight">
-              Developments
-            </span>
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="mt-6 max-w-xl text-[var(--color-slate-500)] text-lg leading-relaxed mx-auto lg:mx-0"
-          >
-            A curated selection of Lois Infrastructure’s most iconic achievements, 
-            bridging the gap between structural integrity and modern aesthetics.
-          </motion.p>
-        </div>
-
-        <div className="grid grid-cols-12 gap-8 lg:gap-10 items-stretch">
-          
-          {/* Property Cards */}
-          {properties.map((prop, idx) => (
+          {/* Visual Column (No Shadows) */}
+          <div className="relative mt-6 lg:absolute lg:right-0 lg:top-0 lg:h-full lg:w-[60%] lg:block">
             <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1, duration: 0.8 }}
-              className="group relative col-span-12 md:col-span-6 lg:col-span-3 aspect-[3/4] overflow-hidden rounded-[1.5rem] bg-white border border-[var(--color-primary-100)]"
+              initial={{ scale: 1.1, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+              className="relative h-[400px] w-full lg:h-full overflow-hidden"
             >
-              {/* Image with high-end grayscale hover effect */}
-              <div
-                className="absolute inset-0 bg-cover bg-center grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105"
-                style={{ backgroundImage: `url(${prop.img})` }}
+              <img
+                src="/images/hero-5.png"
+                alt="Luxury Architecture"
+                className="h-full w-full object-contain object-center scale-110"
+                draggable={false}
               />
 
-              {/* Flat Scrim Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-primary-950)]/90 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
+              {/* Subtle Gradient Scrim - Refined */}
+              <div className="absolute inset-0 -z-10 bg-linear-to-l lg:bg-linear-to-l from-(--color-primary-50) via-white to-white" />
 
-              {/* Content Layer */}
-              <div className="absolute inset-0 flex flex-col justify-end p-8 text-white">
-                <h3 className="text-xl font-bold tracking-tight mb-1 group-hover:translate-x-1 transition-transform">
-                  {prop.title}
-                </h3>
-                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--color-primary-200)]">
-                  {prop.location}
+              {/* Floating Metric Card - Smaller on mobile */}
+              <motion.div
+                initial={{ y: 50, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.8, duration: 1 }}
+                className="absolute bottom-10 right-0 lg:bottom-24 lg:right-20 rounded-2xl border border-(--color-primary-100) bg-white/80 p-5 lg:p-8 backdrop-blur-md"
+              >
+                <div className="flex items-baseline gap-2 lg:gap-3">
+                  <span className="font-bebas text-3xl lg:text-5xl tracking-tighter text-(--color-primary-950)">
+                    2026
+                  </span>
+                  <span className="text-[8px] lg:text-[10px] font-black uppercase tracking-widest text-(--color-primary-500)">
+                    Excellence Award
+                  </span>
+                </div>
+                <p className="mt-1 text-[8px] lg:text-[10px] font-medium uppercase tracking-tight text-slate-400">
+                  Safety Standards & Innovation
                 </p>
-                
-                {/* Visual Accent: Flat line that grows on hover */}
-                <div className="mt-4 h-[2px] w-0 bg-[var(--color-primary-400)] group-hover:w-full transition-all duration-500" />
-              </div>
+              </motion.div>
             </motion.div>
-          ))}
-
-          {/* Info Box (Flat Design) */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="col-span-12 lg:col-span-3 flex flex-col justify-center p-8 lg:p-10 bg-white rounded-[1.5rem] border border-[var(--color-primary-100)]"
-          >
-            <h4 className="font-bebas text-4xl text-[var(--color-primary-950)] mb-6 leading-none uppercase">
-              Spaces Built for <br />
-              <span className="text-[var(--color-primary-400)]">Life</span>
-            </h4>
-            <p className="text-[var(--color-slate-500)] text-sm leading-relaxed mb-6">
-              Our specialists guide you through every structural detail to 
-              ensure your investment is built with the precision of a master architect.
-            </p>
-            <div className="h-px w-12 bg-[var(--color-primary-200)]" />
-          </motion.div>
-
+          </div>
         </div>
-      </div>
-    </section>
+
+        {/* --- Scroll Indicator --- */}
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2">
+          <motion.div
+            animate={{ y: [0, 10, 0] }}
+            transition={{ repeat: Infinity, duration: 2 }}
+            className="flex flex-col items-center gap-4"
+          >
+            <span className="text-[9px] font-black uppercase tracking-[0.5em] text-slate-300">
+              Scroll
+            </span>
+            <div className="h-12 w-px bg-slate-200" />
+          </motion.div>
+        </div>
+      </section>
+      {/* --- Projects Section --- */}
+      <section className="relative bg-(--color-primary-50) py-24 lg:py-32 overflow-hidden">
+        <div className="container mx-auto px-6">
+          {/* Section Header */}
+          <div className="mb-20 text-center lg:text-left">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="font-bebas text-6xl md:text-8xl text-(--color-primary-950) leading-[0.9] uppercase"
+            >
+              Featured <br />
+              <span className="font-serif italic text-(--color-primary-300) normal-case tracking-tight">
+                Developments
+              </span>
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="mt-6 max-w-xl text-(--color-slate-500) text-lg leading-relaxed mx-auto lg:mx-0"
+            >
+              A curated selection of Lois Infrastructure’s most iconic
+              achievements, bridging the gap between structural integrity and
+              modern aesthetics.
+            </motion.p>
+          </div>
+
+          <div className="grid grid-cols-12 gap-8 lg:gap-10 items-stretch">
+            {/* Property Cards */}
+            {properties.map((prop, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1, duration: 0.8 }}
+                className="group relative col-span-12 md:col-span-6 lg:col-span-3 aspect-3/4 overflow-hidden rounded-3xl bg-white border border-(--color-primary-100)"
+              >
+                {/* Image with high-end grayscale hover effect */}
+                <div
+                  className="absolute inset-0 bg-cover bg-center transition-all duration-1000 group-hover:scale-105"
+                  style={{ backgroundImage: `url(${prop.img})` }}
+                />
+
+                {/* Flat Scrim Overlay */}
+                <div className="absolute inset-0 bg-linear-to-t from-primary-950/90 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
+
+                {/* Content Layer */}
+                <div className="absolute inset-0 flex flex-col justify-end p-8 text-white">
+                  <h3 className="text-xl font-bold tracking-tight mb-1 group-hover:translate-x-1 transition-transform">
+                    {prop.title}
+                  </h3>
+                  <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--color-primary-200)]">
+                    {prop.location}
+                  </p>
+
+                  {/* Visual Accent: Flat line that grows on hover */}
+                  <div className="mt-4 h-[2px] w-0 bg-[var(--color-primary-400)] group-hover:w-full transition-all duration-500" />
+                </div>
+              </motion.div>
+            ))}
+
+            {/* Info Box (Flat Design) */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="col-span-12 lg:col-span-3 flex flex-col justify-center p-8 lg:p-10 bg-white rounded-[1.5rem] border border-[var(--color-primary-100)]"
+            >
+              <h4 className="font-bebas text-4xl text-[var(--color-primary-950)] mb-6 leading-none uppercase">
+                Spaces Built for <br />
+                <span className="text-[var(--color-primary-400)]">Life</span>
+              </h4>
+              <p className="text-[var(--color-slate-500)] text-sm leading-relaxed mb-6">
+                Our specialists guide you through every structural detail to
+                ensure your investment is built with the precision of a master
+                architect.
+              </p>
+              <div className="h-px w-12 bg-[var(--color-primary-200)]" />
+            </motion.div>
+          </div>
+        </div>
+      </section>
       {/* --- Services Section --- */}
       <section className="py-20 md:py-32 bg-background overflow-x-hidden">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -602,7 +609,7 @@ export default function Home() {
         </div>
       </section>
       {/* Why Choose Us Section */}
-      <section className="py-20 md:py-32 bg-[var(--background)] overflow-hidden">
+      <section className="py-20 md:py-32 bg-background overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
           {/* Editorial Header */}
           <div className="text-center max-w-2xl mx-auto mb-20 md:mb-28">
@@ -633,7 +640,7 @@ export default function Home() {
 
             {/* Center Column: The Visual Anchor */}
             <div className="lg:col-span-6 order-1 lg:order-2 flex flex-col items-center justify-center">
-              <div className="relative w-full max-w-[320px] md:max-w-[550px]">
+              <div className="relative w-full max-w-full md:max-w-[6000px]">
                 {/* Image Container with Brand Frame */}
                 <div className="relative z-10 w-full overflow-hidden">
                   {/* Floating Sustainability Badge */}
@@ -641,7 +648,7 @@ export default function Home() {
                     <div className="flex items-center justify-center w-6 h-6 bg-emerald-100 rounded-full">
                       <Leaf size={12} className="text-emerald-600" />
                     </div>
-                    <span className="text-[10px] font-black uppercase tracking-wider text-[var(--color-primary-950)]">
+                    <span className="text-[10px] font-black uppercase tracking-wider text-(--color-primary-950)">
                       Eco-Certified Materials
                     </span>
                   </div>
@@ -673,138 +680,156 @@ export default function Home() {
       </section>
       {/* --- About Us Section --- */}
       <section className="relative bg-[var(--color-primary-50)] py-20 lg:py-32 overflow-hidden">
-      <div className="container mx-auto px-6">
-        <div className="grid grid-cols-12 gap-12 lg:gap-20 items-center">
-          
-          {/* Left side: Visual Composition (No Shadows) */}
-          <div className="relative col-span-12 lg:col-span-6 flex items-center justify-center lg:justify-end">
-            <div className="relative w-full max-w-[500px] aspect-[4/5]">
-              {/* Primary Image */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-                className="absolute top-0 left-0 w-[90%] h-[85%] rounded-[1.5rem] overflow-hidden border border-[var(--color-primary-200)] z-10"
-              >
-                <div
-                  className="absolute inset-0 bg-cover bg-center grayscale hover:grayscale-0 transition-all duration-1000"
-                  style={{ backgroundImage: `url('/images/modern-house-exterior.jpg')` }}
-                />
-              </motion.div>
+        <div className="container mx-auto px-6">
+          <div className="grid grid-cols-12 gap-12 lg:gap-20 items-center">
+            {/* Left side: Visual Composition (No Shadows) */}
+            <div className="relative col-span-12 lg:col-span-6 flex items-center justify-center lg:justify-end">
+              <div className="relative w-full max-w-[500px] aspect-[4/5]">
+                {/* Primary Image */}
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8 }}
+                  className="absolute top-0 left-0 w-[90%] h-[85%] rounded-[1.5rem] overflow-hidden border border-[var(--color-primary-200)] z-10"
+                >
+                  <div
+                    className="absolute inset-0 bg-cover bg-center transition-all duration-1000"
+                    style={{
+                      backgroundImage: `url('/images/projects.jpg')`,
+                    }}
+                  />
+                </motion.div>
 
-              {/* Secondary Accent Image */}
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3 }}
-                className="absolute bottom-0 right-0 w-[45%] h-[45%] rounded-[1rem] overflow-hidden border-[6px] border-[var(--color-primary-50)] z-20"
-              >
-                <div
-                  className="absolute inset-0 bg-cover bg-center grayscale hover:grayscale-0 transition-all duration-700"
-                  style={{ backgroundImage: `url('/images/modern-garage-car.jpg')` }}
-                />
-              </motion.div>
+                {/* Secondary Accent Image */}
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.3 }}
+                  className="absolute bottom-0 right-0 w-[45%] h-[45%] rounded-[1rem] overflow-hidden border-[6px] border-[var(--color-primary-50)] z-20"
+                >
+                  <div
+                    className="absolute inset-0 bg-cover bg-center grayscale hover:grayscale-0 transition-all duration-700"
+                    style={{
+                      backgroundImage: `url('/images/modern-garage-car.jpg')`,
+                    }}
+                  />
+                </motion.div>
 
-              {/* Decorative Flat Slab */}
-              <div className="absolute -left-6 -top-6 h-full w-full rounded-[2rem] border border-[var(--color-primary-100)] -z-10" />
+                {/* Decorative Flat Slab */}
+                <div className="absolute -left-6 -top-6 h-full w-full rounded-[2rem] border border-[var(--color-primary-100)] -z-10" />
+              </div>
             </div>
-          </div>
 
-          {/* Right side: Content */}
-          <div className="col-span-12 lg:col-span-6">
-            <header className="max-w-xl">
-              <motion.div
-                initial={{ opacity: 0, x: -10 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                className="mb-8 flex items-center gap-3 text-[var(--color-primary-600)]"
-              >
-                <div className="h-px w-8 bg-[var(--color-primary-600)]" />
-                <span className="text-[10px] font-black uppercase tracking-[0.4em]">
-                  Lois Infrastructure
-                </span>
-              </motion.div>
+            {/* Right side: Content */}
+            <div className="col-span-12 lg:col-span-6">
+              <header className="max-w-xl">
+                <motion.div
+                  initial={{ opacity: 0, x: -10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  className="mb-8 flex items-center gap-3 text-[var(--color-primary-600)]"
+                >
+                  <div className="h-px w-8 bg-[var(--color-primary-600)]" />
+                  <span className="text-[10px] font-black uppercase tracking-[0.4em]">
+                    Lois Infrastructure
+                  </span>
+                </motion.div>
 
-              <motion.h2
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="font-bebas text-6xl md:text-8xl text-[var(--color-primary-900)] mb-8 leading-[0.9] uppercase"
-              >
-                Building with <br />
-                <span className="font-serif italic text-[var(--color-primary-300)] normal-case tracking-tight">
-                  integrity.
-                </span>
-              </motion.h2>
+                <motion.h2
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className="font-bebas text-6xl md:text-8xl text-[var(--color-primary-900)] mb-8 leading-[0.9] uppercase"
+                >
+                  Building with <br />
+                  <span className="font-serif italic text-[var(--color-primary-300)] normal-case tracking-tight">
+                    integrity.
+                  </span>
+                </motion.h2>
 
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  className="space-y-6 text-[var(--color-slate-500)] text-base md:text-lg leading-relaxed"
+                >
+                  <p>
+                    We are a dynamic infrastructure firm bridging the gap
+                    between
+                    <strong className="text-[var(--color-primary-700)] font-bold">
+                      {" "}
+                      technical excellence
+                    </strong>{" "}
+                    and practical design. We don’t just build; we partner with
+                    clients to create functional, durable, and cost-effective
+                    environments.
+                  </p>
+                  <p className="text-sm font-medium border-l-2 border-[var(--color-primary-200)] pl-6">
+                    Our mission is simple: To provide reliable construction
+                    services integrated with modern techniques and sustainable
+                    practices.
+                  </p>
+                </motion.div>
+              </header>
+
+              {/* Core Values Mini-Grid */}
+              <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-8 pt-12 border-t border-[var(--color-primary-100)]">
+                {[
+                  {
+                    title: "Superior Quality",
+                    desc: "Uncompromising workmanship in every structure.",
+                  },
+                  {
+                    title: "Trust & Transparency",
+                    desc: "Long-term relationships built on honesty.",
+                  },
+                ].map((value, i) => (
+                  <div key={i} className="group flex gap-4">
+                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[var(--color-primary-100)] text-[var(--color-primary-700)] group-hover:bg-[var(--color-primary-700)] group-hover:text-white transition-colors duration-300">
+                      <CheckCircle2 size={18} />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-[var(--color-primary-900)] text-sm uppercase tracking-tight">
+                        {value.title}
+                      </h4>
+                      <p className="text-xs text-[var(--color-slate-500)] mt-1 leading-relaxed">
+                        {value.desc}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Signature Block */}
               <motion.div
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                className="space-y-6 text-[var(--color-slate-500)] text-base md:text-lg leading-relaxed"
+                className="mt-16 flex flex-wrap items-center gap-10"
               >
-                <p>
-                  We are a dynamic infrastructure firm bridging the gap between 
-                  <strong className="text-[var(--color-primary-700)] font-bold"> technical excellence</strong> and 
-                  practical design. We don’t just build; we partner with clients to create 
-                  functional, durable, and cost-effective environments.
-                </p>
-                <p className="text-sm font-medium border-l-2 border-[var(--color-primary-200)] pl-6">
-                  Our mission is simple: To provide reliable construction services 
-                  integrated with modern techniques and sustainable practices.
-                </p>
-              </motion.div>
-            </header>
+                <button className="group flex items-center gap-3 rounded-full bg-[var(--color-primary-700)] px-8 py-4 text-xs font-black uppercase tracking-widest text-white hover:bg-[var(--color-primary-800)] transition-all">
+                  Meet the Team
+                  <ArrowRight
+                    size={16}
+                    className="group-hover:translate-x-1 transition-transform"
+                  />
+                </button>
 
-            {/* Core Values Mini-Grid */}
-            <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-8 pt-12 border-t border-[var(--color-primary-100)]">
-              {[
-                { title: "Superior Quality", desc: "Uncompromising workmanship in every structure." },
-                { title: "Trust & Transparency", desc: "Long-term relationships built on honesty." }
-              ].map((value, i) => (
-                <div key={i} className="group flex gap-4">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[var(--color-primary-100)] text-[var(--color-primary-700)] group-hover:bg-[var(--color-primary-700)] group-hover:text-white transition-colors duration-300">
-                    <CheckCircle2 size={18} />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-[var(--color-primary-900)] text-sm uppercase tracking-tight">
-                      {value.title}
-                    </h4>
-                    <p className="text-xs text-[var(--color-slate-500)] mt-1 leading-relaxed">
-                      {value.desc}
-                    </p>
-                  </div>
+                <div className="flex flex-col">
+                  <span className="font-serif italic text-3xl text-[var(--color-primary-300)] leading-none">
+                    Lois Infrastructure
+                  </span>
+                  <span className="mt-2 text-[9px] font-black uppercase tracking-[0.2em] text-[var(--color-primary-400)]">
+                    Infrastructure Development Firm
+                  </span>
                 </div>
-              ))}
+              </motion.div>
             </div>
-
-            {/* Signature Block */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              className="mt-16 flex flex-wrap items-center gap-10"
-            >
-              <button className="group flex items-center gap-3 rounded-full bg-[var(--color-primary-700)] px-8 py-4 text-xs font-black uppercase tracking-widest text-white hover:bg-[var(--color-primary-800)] transition-all">
-                Meet the Team
-                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-              </button>
-
-              <div className="flex flex-col">
-                <span className="font-serif italic text-3xl text-[var(--color-primary-300)] leading-none">
-                  Lois Infrastructure
-                </span>
-                <span className="mt-2 text-[9px] font-black uppercase tracking-[0.2em] text-[var(--color-primary-400)]">
-                  Infrastructure Development Firm
-                </span>
-              </div>
-            </motion.div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
     </main>
   );
 }
@@ -827,42 +852,58 @@ const ReasonCard = ({
     initial={{ opacity: 0, x: isRight ? -30 : 30 }}
     whileInView={{ opacity: 1, x: 0 }}
     viewport={{ once: true }}
-    className={`group flex flex-col ${isRight ? "lg:items-end lg:text-right" : "lg:items-start lg:text-left"}`}
+    className={cn(
+      "group flex flex-col items-center text-center", // Base: Centered on mobile
+      isRight ? "lg:items-end lg:text-right" : "lg:items-start lg:text-left", // Desktop: Conditional alignment
+    )}
   >
     {/* Icon with Senior Styling */}
     <div className="relative mb-6">
-      <div className="flex items-center justify-center w-14 h-14 rounded-2xl bg-white border border-[var(--color-primary-100)] shadow-sm text-[var(--color-primary-700)] transition-all duration-500 group-hover:bg-[var(--color-primary-700)] group-hover:text-white group-hover:scale-110 group-hover:shadow-xl">
+      <div className="flex items-center justify-center w-14 h-14 rounded-2xl bg-white border border-[var(--color-primary-100)] text-[var(--color-primary-700)] transition-all duration-500 group-hover:bg-[var(--color-primary-700)] group-hover:text-white group-hover:scale-110 group-hover:shadow-xl">
         <Icon size={24} strokeWidth={1.5} />
       </div>
-      <div
-        className={`absolute -inset-2 bg-[var(--color-primary-500)]/5 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity`}
-      />
+      <div className="absolute -inset-2 bg-[var(--color-primary-500)]/5 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
     </div>
 
     <div className="space-y-3">
-      <h3 className="text-xl font-bold text-[var(--color-primary-950)] tracking-tight flex items-center gap-2 justify-start lg:justify-normal">
+      <h3
+        className={cn(
+          "text-xl font-bold text-[var(--color-primary-950)] tracking-tight flex items-center gap-2 justify-center", // justify-center on mobile
+          isRight ? "lg:justify-end" : "lg:justify-start", // restore desktop justification
+        )}
+      >
+        {/* Only show this icon on desktop if isRight */}
         {isRight && (
           <ArrowUpRight
             size={16}
             className="text-[var(--color-primary-400)] opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0 hidden lg:block"
           />
         )}
+
         {title}
-        {!isRight && (
+
+        {/* Show this icon on mobile always, or only on desktop if !isRight */}
+        {(!isRight || true) && (
           <ArrowUpRight
             size={16}
-            className="text-[var(--color-primary-400)] opacity-0 group-hover:opacity-100 transition-all translate-x-2 group-hover:translate-x-0"
+            className={cn(
+              "text-[var(--color-primary-400)] opacity-0 group-hover:opacity-100 transition-all translate-x-2 group-hover:translate-x-0",
+              isRight && "lg:hidden", // Hide the "left-side" icon on desktop if we are using the right-aligned layout
+            )}
           />
         )}
       </h3>
-      <p className="text-[var(--color-slate-500)] leading-relaxed text-sm md:text-base max-w-sm">
+      <p className="text-[var(--color-slate-500)] leading-relaxed text-sm md:text-base max-w-sm mx-auto lg:mx-0">
         {description}
       </p>
     </div>
 
     {/* Progressive Underline */}
     <div
-      className={`mt-6 h-[2px] w-6 bg-[var(--color-primary-100)] transition-all duration-500 group-hover:w-16 group-hover:bg-[var(--color-primary-500)] ${isRight ? "lg:ml-auto" : "lg:mr-auto"}`}
+      className={cn(
+        "mt-6 h-[2px] w-6 bg-[var(--color-primary-100)] transition-all duration-500 group-hover:w-16 group-hover:bg-[var(--color-primary-500)] mx-auto", // mx-auto centers on mobile
+        isRight ? "lg:ml-auto lg:mr-0" : "lg:mr-auto lg:ml-0", // override margins for desktop
+      )}
     />
   </motion.div>
 );

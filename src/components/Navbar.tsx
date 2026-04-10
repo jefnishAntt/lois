@@ -7,8 +7,7 @@ import { ArrowRight, Hammer } from "lucide-react"; // Swapped Search for Hammer 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { NAV_LINKS } from "@/config";
-
-
+import Image from "next/image";
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -27,41 +26,41 @@ const Navbar = () => {
     <nav
       className={cn(
         "fixed top-0 z-50 w-full transition-all duration-700 ease-in-out",
-        isScrolled 
-          ? "bg-white/90 py-3 backdrop-blur-md shadow" 
-          : "bg-transparent py-8"
+        isScrolled
+          ? "bg-white/90 py-3 backdrop-blur-md shadow"
+          : "bg-transparent py-8",
       )}
     >
       <div className="container mx-auto flex items-center justify-between px-6 lg:px-12">
-        
         {/* Logo Section */}
         <Link href="/" className="flex items-center gap-3 group">
-          <div className={cn(
-            "flex h-11 w-11 items-center justify-center rounded-xl transition-all duration-500",
-            isScrolled ? "bg-(--color-primary-900) text-white" : "bg-white text-(--color-primary-900)"
-          )}>
-            <Hammer size={20} strokeWidth={1.5} className="group-hover:rotate-12 transition-transform" />
-          </div>
-          <div className="flex flex-col leading-none">
-            <span className={cn(
-              "text-2xl font-bebas tracking-wide transition-colors duration-500 uppercase",
-              isScrolled ? "text-[var(--color-primary-950)]" : "text-[var(--color-primary-950)]" 
-            )}>
-              Lois
-            </span>
-            <span className="text-[8px] font-black uppercase tracking-[0.3em] text-[var(--color-primary-400)]">
-              Infrastructure
-            </span>
+          <div
+            className={cn(
+              "relative flex h-11 w-40 items-center justify-center rounded-xl transition-all duration-500 overflow-hidden",
+            )}
+          >
+            <Image
+              src="/images/logo.webp"
+              alt="Lois Logo"
+              width={500}
+              height={500}
+              priority
+              className={cn(
+                "transition-all duration-500 brightness-0",
+              )}
+            />
           </div>
         </Link>
 
         {/* Floating Menu Logic (No Border) */}
-        <ul className={cn(
-          "hidden items-center gap-10 transition-all duration-500 md:flex px-8 py-2 rounded-full",
-          isScrolled 
-            ? "bg-transparent" 
-            : "bg-primary-100/50 backdrop-blur-sm"
-        )}>
+        <ul
+          className={cn(
+            "hidden items-center gap-10 transition-all duration-500 md:flex px-8 py-2 rounded-full",
+            isScrolled
+              ? "bg-transparent"
+              : "bg-primary-100/50 backdrop-blur-sm",
+          )}
+        >
           {NAV_LINKS.map((link) => {
             const isActive = pathname === link.path;
             return (
@@ -77,12 +76,14 @@ const Navbar = () => {
         </ul>
 
         {/* CTA Button */}
-        <button className={cn(
-          "group flex items-center gap-3 rounded-full px-8 py-3 text-[10px] font-black uppercase tracking-widest transition-all duration-500",
-          isScrolled 
-            ? "bg-[var(--color-primary-900)] text-white hover:bg-[var(--color-primary-700)]" 
-            : "bg-white text-[var(--color-primary-900)] hover:bg-[var(--color-primary-50)]"
-        )}>
+        <button
+          className={cn(
+            "group flex items-center gap-3 rounded-full px-8 py-3 text-[10px] font-black uppercase tracking-widest transition-all duration-500",
+            isScrolled
+              ? "bg-[var(--color-primary-900)] text-white hover:bg-[var(--color-primary-700)]"
+              : "bg-white text-[var(--color-primary-900)] hover:bg-[var(--color-primary-50)]",
+          )}
+        >
           Work with us
           <ArrowRight
             size={14}
@@ -117,10 +118,10 @@ const NavItem = ({
         href={href}
         className={cn(
           "relative inline-flex items-center py-2 text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-300 outline-none",
-          isActive 
-            ? "text-[var(--color-primary-900)]" 
-            : isScrolled 
-              ? "text-[var(--color-slate-500)] hover:text-[var(--color-primary-900)]" 
+          isActive
+            ? "text-[var(--color-primary-900)]"
+            : isScrolled
+              ? "text-[var(--color-slate-500)] hover:text-[var(--color-primary-900)]"
               : "text-[var(--color-primary-900)]/70 hover:text-[var(--color-primary-900)]",
           className,
         )}
